@@ -58,6 +58,7 @@
 #include "capfloor.hpp"
 #include "capflooredcoupon.hpp"
 #include "cashflows.hpp"
+#include "catbonds.hpp"
 #include "cdo.hpp"
 #include "cdsoption.hpp"
 #include "chooseroption.hpp"
@@ -266,6 +267,7 @@ test_suite* init_unit_test_suite(int, char* []) {
     test->add(CapFloorTest::suite());
     test->add(CapFlooredCouponTest::suite());
     test->add(CashFlowsTest::suite());
+    test->add(CatBondTest::suite());
     test->add(CliquetOptionTest::suite());
     test->add(CmsTest::suite());
     test->add(CovarianceTest::suite());

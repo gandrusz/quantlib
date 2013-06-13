@@ -319,6 +319,12 @@
     <Filter Include="methods\finitedifferences\utilities">
       <UniqueIdentifier>{be723df5-2e58-41de-8071-8d2e2f62410a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="experimental\catbonds">
+      <UniqueIdentifier>{38f8ad14-f839-425e-b711-68a9acd361f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="experimental\catbonds">
+      <UniqueIdentifier>{317d2c67-b6a4-4666-b5de-110881ec34c0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ql\methods\all.hpp">
@@ -3645,6 +3651,19 @@
     <ClInclude Include="ql\experimental\math\expm.hpp">
       <Filter>experimental\math</Filter>
     </ClInclude>
+    <ClInclude Include="ql\experimental\catbonds\catbond.hpp">
+      <Filter>experimental\catbonds</Filter>
+    </ClInclude>
+    <ClInclude Include="ql\experimental\catbonds\catrisk.hpp">
+      <Filter>experimental\catbonds</Filter>
+    </ClInclude>
+    <ClInclude Include="ql\experimental\catbonds\montecarlocatbondengine.hpp">
+      <Filter>experimental\catbonds</Filter>
+    </ClInclude>
+    <ClInclude Include="ql\experimental\catbonds\riskynotional.hpp">
+      <Filter>experimental\catbonds</Filter>
+    </ClInclude>
+    <ClInclude Include="ql\experimental\catbonds\all.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ql\methods\montecarlo\brownianbridge.cpp">
@@ -5828,6 +5847,18 @@
     </ClCompile>
     <ClCompile Include="ql\experimental\math\expm.cpp">
       <Filter>experimental\math</Filter>
+    </ClCompile>
+    <ClCompile Include="ql\experimental\catbonds\catbond.cpp">
+      <Filter>experimental\catbonds</Filter>
+    </ClCompile>
+    <ClCompile Include="ql\experimental\catbonds\catrisk.cpp">
+      <Filter>experimental\catbonds</Filter>
+    </ClCompile>
+    <ClCompile Include="ql\experimental\catbonds\montecarlocatbondengine.cpp">
+      <Filter>experimental\catbonds</Filter>
+    </ClCompile>
+    <ClCompile Include="ql\experimental\catbonds\riskynotional.cpp">
+      <Filter>experimental\catbonds</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

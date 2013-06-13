@@ -482,6 +482,11 @@
   <ItemGroup>
     <ClInclude Include="ql\cashflows\cpicoupon.hpp" />
     <ClInclude Include="ql\cashflows\cpicouponpricer.hpp" />
+    <ClInclude Include="ql\experimental\catbonds\all.hpp" />
+    <ClInclude Include="ql\experimental\catbonds\catbond.hpp" />
+    <ClInclude Include="ql\experimental\catbonds\catrisk.hpp" />
+    <ClInclude Include="ql\experimental\catbonds\montecarlocatbondengine.hpp" />
+    <ClInclude Include="ql\experimental\catbonds\riskynotional.hpp" />
     <ClInclude Include="ql\experimental\finitedifferences\dynprogvppintrinsicvalueengine.hpp" />
     <ClInclude Include="ql\experimental\finitedifferences\fdextoujumpvanillaengine.hpp" />
     <ClInclude Include="ql\experimental\finitedifferences\fdklugeextouspreadengine.hpp" />
@@ -1618,6 +1623,10 @@
   <ItemGroup>
     <ClCompile Include="ql\cashflows\cpicoupon.cpp" />
     <ClCompile Include="ql\cashflows\cpicouponpricer.cpp" />
+    <ClCompile Include="ql\experimental\catbonds\catbond.cpp" />
+    <ClCompile Include="ql\experimental\catbonds\catrisk.cpp" />
+    <ClCompile Include="ql\experimental\catbonds\montecarlocatbondengine.cpp" />
+    <ClCompile Include="ql\experimental\catbonds\riskynotional.cpp" />
     <ClCompile Include="ql\experimental\finitedifferences\dynprogvppintrinsicvalueengine.cpp" />
     <ClCompile Include="ql\experimental\finitedifferences\fdextoujumpvanillaengine.cpp" />
     <ClCompile Include="ql\experimental\finitedifferences\fdklugeextouspreadengine.cpp" />

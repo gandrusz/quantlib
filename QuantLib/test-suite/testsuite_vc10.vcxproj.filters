@@ -372,6 +372,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="quantlibtestsuite.cpp" />
+    <ClCompile Include="catbonds.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="americanoption.hpp">
@@ -735,6 +738,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="writerextensibleoption.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="catbonds.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

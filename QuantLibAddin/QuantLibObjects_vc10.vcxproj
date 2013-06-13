@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug (static runtime)|Win32">
@@ -210,6 +210,7 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="qlo\catbonds.cpp" />
     <ClCompile Include="qlo\enumerations\register\register_all.cpp" />
     <ClCompile Include="qlo\enumerations\register\register_classes.cpp" />
     <ClCompile Include="qlo\enumerations\register\register_pairs.cpp" />
@@ -217,6 +218,8 @@
     <ClCompile Include="qlo\enumerations\constructors\enumeratedclasses.cpp" />
     <ClCompile Include="qlo\enumerations\constructors\enumeratedpairs.cpp" />
     <ClCompile Include="qlo\enumerations\factories\calendarfactory.cpp" />
+    <ClCompile Include="qlo\serialization\create\create_catbonds.cpp" />
+    <ClCompile Include="qlo\serialization\register\serialization_catbonds.cpp" />
     <ClCompile Include="qlo\valueobjects\vo_abcd.cpp" />
     <ClCompile Include="qlo\valueobjects\vo_accountingengines.cpp" />
     <ClCompile Include="qlo\valueobjects\vo_alphaform.cpp" />
@@ -226,6 +229,7 @@
     <ClCompile Include="qlo\valueobjects\vo_btp.cpp" />
     <ClCompile Include="qlo\valueobjects\vo_capfloor.cpp" />
     <ClCompile Include="qlo\valueobjects\vo_capletvolstructure.cpp" />
+    <ClCompile Include="qlo\valueobjects\vo_catbonds.cpp" />
     <ClCompile Include="qlo\valueobjects\vo_cmsmarket.cpp" />
     <ClCompile Include="qlo\valueobjects\vo_cmsmarketcalibration.cpp" />
     <ClCompile Include="qlo\valueobjects\vo_correlation.cpp" />
@@ -458,6 +462,7 @@
     <ClCompile Include="qlo\utilities.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="qlo\catbonds.hpp" />
     <ClInclude Include="qlo\enumerations\register\register_all.hpp" />
     <ClInclude Include="qlo\enumerations\constructors\enumeratedclasses.hpp" />
     <ClInclude Include="qlo\enumerations\constructors\enumeratedpairs.hpp" />
@@ -469,6 +474,8 @@
     <ClInclude Include="qlo\enumerations\factories\payoffsfactory.hpp" />
     <ClInclude Include="qlo\enumerations\factories\pricingenginesfactory.hpp" />
     <ClInclude Include="qlo\enumerations\factories\termstructuresfactory.hpp" />
+    <ClInclude Include="qlo\serialization\create\create_catbonds.hpp" />
+    <ClInclude Include="qlo\serialization\register\serialization_catbonds.hpp" />
     <ClInclude Include="qlo\valueobjects\vo_abcd.hpp" />
     <ClInclude Include="qlo\valueobjects\vo_accountingengines.hpp" />
     <ClInclude Include="qlo\valueobjects\vo_all.hpp" />
@@ -479,6 +486,7 @@
     <ClInclude Include="qlo\valueobjects\vo_btp.hpp" />
     <ClInclude Include="qlo\valueobjects\vo_capfloor.hpp" />
     <ClInclude Include="qlo\valueobjects\vo_capletvolstructure.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_catbonds.hpp" />
     <ClInclude Include="qlo\valueobjects\vo_cmsmarket.hpp" />
     <ClInclude Include="qlo\valueobjects\vo_cmsmarketcalibration.hpp" />
     <ClInclude Include="qlo\valueobjects\vo_correlation.hpp" />
@@ -750,6 +758,11 @@
     <ClInclude Include="qlo\timeseries.hpp" />
     <ClInclude Include="qlo\utilities.hpp" />
     <ClInclude Include="qlo\vcconfig.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="gensrc\metadata\functions\catbonds.xml">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

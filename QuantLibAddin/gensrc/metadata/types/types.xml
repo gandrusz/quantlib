@@ -196,6 +196,7 @@
     <DataType defaultSuperType='objectClass'>QuantLibAddin::Bond</DataType>
     <DataType defaultSuperType='objectClass'>QuantLibAddin::BTP</DataType>
     <DataType defaultSuperType='objectClass'>QuantLibAddin::FloatingRateBond</DataType>
+    <DataType defaultSuperType='objectClass'>QuantLibAddin::FloatingCatBond</DataType>
     <DataType defaultSuperType='objectClass'>QuantLibAddin::RendistatoBasket</DataType>
     <DataType defaultSuperType='objectClass'>QuantLibAddin::RendistatoCalculator</DataType>
     <DataType defaultSuperType='objectClass'>QuantLibAddin::CMSMMDriftCalculator</DataType>
@@ -245,7 +246,9 @@
 
     <DataType defaultSuperType='underlyingClass'>QuantLib::BrownianGeneratorFactory</DataType>
     <DataType defaultSuperType='underlyingClass'>QuantLib::Leg</DataType>
-
+    <DataType defaultSuperType='underlyingClass'>QuantLib::NotionalRisk</DataType>
+    <DataType defaultSuperType='underlyingClass'>QuantLib::CatRisk</DataType>
+    <DataType defaultSuperType='underlyingClass'>QuantLib::MonteCarloCatBondEngine</DataType>
   </DataTypes>
 
 </root>

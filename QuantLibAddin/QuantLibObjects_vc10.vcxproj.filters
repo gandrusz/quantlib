@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="enumerations">
@@ -795,6 +795,18 @@
     <ClCompile Include="qlo\settings.cpp" />
     <ClCompile Include="qlo\timeseries.cpp" />
     <ClCompile Include="qlo\utilities.cpp" />
+    <ClCompile Include="qlo\valueobjects\vo_catbonds.cpp">
+      <Filter>valueobjects</Filter>
+    </ClCompile>
+    <ClCompile Include="qlo\serialization\create\create_catbonds.cpp">
+      <Filter>serialization\create</Filter>
+    </ClCompile>
+    <ClCompile Include="qlo\serialization\register\serialization_catbonds.cpp">
+      <Filter>serialization\register</Filter>
+    </ClCompile>
+    <ClCompile Include="qlo\catbonds.cpp">
+      <Filter>Instruments</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="qlo\enumerations\register\register_all.hpp">
@@ -1639,5 +1651,17 @@
     <ClInclude Include="qlo\timeseries.hpp" />
     <ClInclude Include="qlo\utilities.hpp" />
     <ClInclude Include="qlo\vcconfig.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_catbonds.hpp">
+      <Filter>valueobjects</Filter>
+    </ClInclude>
+    <ClInclude Include="qlo\serialization\create\create_catbonds.hpp">
+      <Filter>serialization\create</Filter>
+    </ClInclude>
+    <ClInclude Include="qlo\serialization\register\serialization_catbonds.hpp">
+      <Filter>serialization\register</Filter>
+    </ClInclude>
+    <ClInclude Include="qlo\catbonds.hpp">
+      <Filter>Instruments</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
