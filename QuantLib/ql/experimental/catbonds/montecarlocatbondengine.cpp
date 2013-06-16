@@ -18,6 +18,8 @@
 */
 
 #include <ql/cashflows/cashflows.hpp>
+#include <ql/math/statistics/generalstatistics.hpp>
+#include <ql/math/statistics/riskstatistics.hpp>
 #include <algorithm>
 #include "montecarlocatbondengine.hpp"
 
@@ -25,8 +27,9 @@ namespace QuantLib {
     MonteCarloCatBondEngine::MonteCarloCatBondEngine(
                              const boost::shared_ptr<CatRisk> catRisk,
                              const Handle<YieldTermStructure>& discountCurve,
+							 Real varLevel,
                              boost::optional<bool> includeSettlementDateFlows)
-    : catRisk_(catRisk), discountCurve_(discountCurve),
+    : catRisk_(catRisk), discountCurve_(discountCurve), varLevel_(varLevel),
       includeSettlementDateFlows_(includeSettlementDateFlows) {
         registerWith(discountCurve_);
     }
@@ -42,20 +45,10 @@ namespace QuantLib {
             *includeSettlementDateFlows_ :
             Settings::instance().includeReferenceDateEvents();
 
-        Real lossProbability;
-        Real exhaustionProbability;
-        Real expectedLoss;
-
-        results_.value = npv(includeRefDateFlows,
+        results_ = npv(includeRefDateFlows,
                              results_.valuationDate,
-                             results_.valuationDate,
-                             lossProbability,
-                             exhaustionProbability,
-                             expectedLoss);
+                             results_.valuationDate);
 
-        results_.lossProbability = lossProbability;
-        results_.exhaustionProbability = exhaustionProbability;
-        results_.expectedLoss = expectedLoss;
 
         // a bond's cashflow on settlement date is never taken into
         // account, so we might have to play it safe and recalculate
@@ -66,18 +59,26 @@ namespace QuantLib {
         } else {
             // no such luck
             results_.settlementValue =
-                npv(includeRefDateFlows, arguments_.settlementDate, arguments_.settlementDate, lossProbability, exhaustionProbability, expectedLoss);
+				npv(includeRefDateFlows, arguments_.settlementDate, arguments_.settlementDate).settlementValue;
         }
     }
 
-    Real MonteCarloCatBondEngine::npv(bool includeSettlementDateFlows, Date settlementDate, Date npvDate, Real& lossProbability, Real &exhaustionProbability, Real& expectedLoss) const
+    CatBond::results MonteCarloCatBondEngine::npv(bool includeSettlementDateFlows, 
+												  Date settlementDate, 
+									              Date npvDate) const
     {
 	    const size_t MAX_PATHS = 10000; //TODO
-        lossProbability =  0.0;
-        exhaustionProbability = 0.0;
-        expectedLoss = 0.0;
-        if (arguments_.cashflows.empty())
-            return 0.0;
+		CatBond::results result;
+		result.reset();
+
+        double lossProbability =  0.0;
+        double exhaustionProbability = 0.0;
+        double expectedLoss = 0.0;
+		//GenericRiskStatistics<GeneralStatistics> statistics;
+		GeneralStatistics statistics;
+        if (arguments_.cashflows.empty()) {
+			 return result;
+		}
 
         if (settlementDate == Date())
             settlementDate = Settings::instance().evaluationDate();
@@ -97,20 +98,38 @@ namespace QuantLib {
         {
             arguments_.notionalRisk->updatePath(eventsPath, notionalPath);
             if(notionalPath.loss()>0) { //optimization, most paths will not include any loss
-                totalNPV += pathNpv(includeSettlementDateFlows, settlementDate, notionalPath);
+				double thisNpv = pathNpv(includeSettlementDateFlows, settlementDate, notionalPath);
+                totalNPV += thisNpv;
                 lossProbability+=1;
                 if (notionalPath.loss()==1) 
                     exhaustionProbability+=1;
                 expectedLoss+=notionalPath.loss();
+				statistics.add(thisNpv, 1.0);
             } else {
                 totalNPV += riskFreeNPV;
+				statistics.add(riskFreeNPV, 1.0);
             }
             pathCount++;
         }
         lossProbability/=pathCount;
         exhaustionProbability/=pathCount;
         expectedLoss/=pathCount;
-        return totalNPV/(pathCount*discountCurve_->discount(npvDate));
+
+		result.valuationDate = settlementDate;
+
+		result.value = totalNPV/(pathCount*discountCurve_->discount(npvDate));
+		result.settlementValue = result.value;
+		result.lossProbability = lossProbability;
+		result.exhaustionProbability = exhaustionProbability;
+		result.expectedLoss = expectedLoss;
+
+		if(Null<Real>()!=varLevel_) {
+			result.var = result.value - statistics.percentile(1.0-varLevel_);
+			result.stdDev = statistics.standardDeviation();
+			result.skew = statistics.skewness();
+			result.kurtosis = statistics.kurtosis();
+		}
+        return result;
     }
 
     Real MonteCarloCatBondEngine::pathNpv(bool includeSettlementDateFlows, 

@@ -639,7 +639,7 @@ void CatBondTest::testCatBondWithGeneratedEventsProportional() {
                            false,
                            100.0, Date(30,November,2004));
 
-    shared_ptr<PricingEngine> catBondEngine(new MonteCarloCatBondEngine(betaCatRisk, discountCurve));
+    shared_ptr<PricingEngine> catBondEngine(new MonteCarloCatBondEngine(betaCatRisk, discountCurve, 0.99));
     catBond.setPricingEngine(catBondEngine);
     setCouponPricer(catBond.cashflows(),pricer);
 
@@ -649,12 +649,17 @@ void CatBondTest::testCatBondWithGeneratedEventsProportional() {
     Real exhaustionProbability = catBond.exhaustionProbability();
     Real expectedLoss = catBond.expectedLoss();
 
-    std::cout <<"Price= "<<price<<", yield="<<yield<<", lossProbability="<<lossProbability<<", exhaustionProbability"<<exhaustionProbability<<", expectedLoss"<<expectedLoss<<std::endl;
+    //std::cout <<"Price= "<<price<<", yield="<<yield<<", lossProbability="<<lossProbability<<", exhaustionProbability"<<exhaustionProbability<<", expectedLoss"<<expectedLoss<<std::endl;
 
     BOOST_CHECK(lossProbability<1.0 && lossProbability>0.0);
     BOOST_CHECK(exhaustionProbability<1.0 && exhaustionProbability>0.0);
     BOOST_CHECK(lossProbability>exhaustionProbability);
     BOOST_CHECK(expectedLoss>0.0);
+
+	BOOST_CHECK(catBond.var()>0.0);
+	BOOST_CHECK(catBond.stdDev()>0.0);
+	BOOST_CHECK(catBond.skew()!=0.0);
+	BOOST_CHECK(catBond.kurtosis()>0.0);
 
     shared_ptr<PricingEngine> catBondEngineRF(new MonteCarloCatBondEngine(noCatRisk, discountCurve));
     catBond.setPricingEngine(catBondEngineRF);

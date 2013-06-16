@@ -224,6 +224,71 @@
       </ReturnValue>
     </Member>
 
+    <Member name='qlCatBondVar' type='QuantLibAddin::FloatingCatBond'>
+      <description>Returns the VaR of the CAT bond.</description>
+      <libraryFunction>var</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+
+    <Member name='qlCatBondStdDev' type='QuantLibAddin::FloatingCatBond'>
+      <description>Returns the stdDev of the CAT bond.</description>
+      <libraryFunction>stdDev</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlCatBondSkew' type='QuantLibAddin::FloatingCatBond'>
+      <description>Returns the skewness of the CAT bond.</description>
+      <libraryFunction>skew</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlCatBondKurtosis' type='QuantLibAddin::FloatingCatBond'>
+      <description>Returns the kurtosis of the CAT bond.</description>
+      <libraryFunction>kurtosis</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
     <Member name='qlCatBondSetPricingEngine' type='QuantLibAddin::FloatingCatBond'>
       <description>Set the pricer at the given CAT Bond object.</description>
       <libraryFunction>setCatBondPricingEngine</libraryFunction>
@@ -301,6 +366,11 @@
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
             <description>YieldTermStructure object ID.</description>
+          </Parameter>
+          <Parameter name='VarLevel' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>VaR level.</description>
           </Parameter>
         </Parameters>
       </ParameterList>

@@ -90,6 +90,10 @@ namespace QuantLibAddin {
         QuantLib::Real expectedLoss();
         QuantLib::Real exhaustionProbability();
 
+		QuantLib::Real var();
+		QuantLib::Real stdDev();
+		QuantLib::Real skew();
+		QuantLib::Real kurtosis();
 
       protected:
         FloatingCatBond(
@@ -125,6 +129,7 @@ namespace QuantLibAddin {
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const boost::shared_ptr<QuantLib::CatRisk> &catRisk,
             const QuantLib::Handle<QuantLib::YieldTermStructure>& discountCurve,
+			QuantLib::Real varLevel,
             bool permanent);
     };
 }

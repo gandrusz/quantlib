@@ -60,6 +60,11 @@ namespace QuantLib {
         lossProbability_ = results->lossProbability;
         expectedLoss_ = results->expectedLoss;
         exhaustionProbability_ = results->exhaustionProbability;
+
+		var_ = results->var;
+		stdDev_ = results->stdDev;
+		skew_ = results->skew;
+		kurtosis_ = results->kurtosis;
     }
 
     Real CatBond::lossProbability() const { 
@@ -75,6 +80,26 @@ namespace QuantLib {
     Real CatBond::exhaustionProbability() const { 
         calculate(); 
         return exhaustionProbability_; 
+    }
+
+	Real CatBond::var() const { 
+        calculate(); 
+        return var_; 
+    }
+
+	Real CatBond::stdDev() const { 
+        calculate(); 
+        return stdDev_; 
+    }
+
+	Real CatBond::skew() const { 
+        calculate(); 
+        return skew_; 
+    }
+
+	Real CatBond::kurtosis() const { 
+        calculate(); 
+        return kurtosis_; 
     }
 
     FloatingCatBond::FloatingCatBond(

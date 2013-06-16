@@ -35,6 +35,7 @@ namespace QuantLib {
               const boost::shared_ptr<CatRisk> catRisk,
               const Handle<YieldTermStructure>& discountCurve =
                                                 Handle<YieldTermStructure>(),
+	          Real varLevel = Null<Real>(),
               boost::optional<bool> includeSettlementDateFlows = boost::none);
         void calculate() const;
         Handle<YieldTermStructure> discountCurve() const {
@@ -44,12 +45,9 @@ namespace QuantLib {
         Real cashFlowRiskyValue(const boost::shared_ptr<CashFlow> cf, 
                                 const NotionalPath& notionalPath) const;
 
-        Real npv(bool includeSettlementDateFlows, 
-                 Date settlementDate, 
-                 Date npvDate, 
-                 Real& lossProbability, 
-                 Real& exhaustionProbability, 
-                 Real& expectedLoss) const;
+        CatBond::results MonteCarloCatBondEngine::npv(bool includeSettlementDateFlows, 
+												  Date settlementDate, 
+									              Date npvDate) const;
 
         Real pathNpv(bool includeSettlementDateFlows, 
                      Date settlementDate, 
@@ -57,6 +55,7 @@ namespace QuantLib {
       private:
         boost::shared_ptr<CatRisk> catRisk_;
         Handle<YieldTermStructure> discountCurve_;
+		Real varLevel_;
         boost::optional<bool> includeSettlementDateFlows_;
     };
 

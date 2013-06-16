@@ -59,12 +59,22 @@ namespace QuantLib {
         Real lossProbability() const;
         Real expectedLoss() const;
         Real exhaustionProbability() const;
+
+		Real var() const;
+		Real stdDev() const;
+		Real skew() const;
+		Real kurtosis() const;
     protected:
         boost::shared_ptr<NotionalRisk> notionalRisk_;
 
         mutable Real lossProbability_;
         mutable Real exhaustionProbability_;
         mutable Real expectedLoss_;
+
+		mutable Real var_;
+		mutable Real stdDev_;
+		mutable Real skew_;
+		mutable Real kurtosis_;
 	};
 
     class CatBond::arguments : public Bond::arguments {
@@ -80,6 +90,23 @@ namespace QuantLib {
         Real lossProbability;
         Real exhaustionProbability;
         Real expectedLoss;
+
+		Real var;
+		Real stdDev;
+		Real skew;
+		Real kurtosis;
+
+		void reset() {
+            lossProbability = Null<Real>();
+			exhaustionProbability = Null<Real>();
+			expectedLoss = Null<Real>();
+
+			var = Null<Real>();
+			stdDev = Null<Real>();
+			skew = Null<Real>();
+			kurtosis = Null<Real>();
+            Bond::results::reset();
+        }
     };
 
     //! base class for cat bond engine

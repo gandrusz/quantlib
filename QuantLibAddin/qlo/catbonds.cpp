@@ -124,6 +124,11 @@ namespace QuantLibAddin {
     QuantLib::Real FloatingCatBond::expectedLoss() { return qlCatBondObject_->expectedLoss(); }
     QuantLib::Real FloatingCatBond::exhaustionProbability() { return qlCatBondObject_->exhaustionProbability(); }
 
+	QuantLib::Real FloatingCatBond::var() { return qlCatBondObject_->var(); }
+	QuantLib::Real FloatingCatBond::stdDev() { return qlCatBondObject_->stdDev(); }
+	QuantLib::Real FloatingCatBond::skew() { return qlCatBondObject_->skew(); }
+	QuantLib::Real FloatingCatBond::kurtosis() { return qlCatBondObject_->kurtosis(); }
+
     FloatingCatBond::FloatingCatBond(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const std::string& des,
@@ -153,10 +158,11 @@ namespace QuantLibAddin {
             const boost::shared_ptr<ObjectHandler::ValueObject>& p,
             const boost::shared_ptr<QuantLib::CatRisk> &catRisk,
             const QuantLib::Handle<QuantLib::YieldTermStructure>& discountCurve,
+			QuantLib::Real varLevel,
             bool permanent)
     : ObjectHandler::LibraryObject<QuantLib::MonteCarloCatBondEngine>(p, permanent) {
         libraryObject_ = boost::shared_ptr<QuantLib::MonteCarloCatBondEngine>(new
-            QuantLib::MonteCarloCatBondEngine(catRisk, discountCurve));
+            QuantLib::MonteCarloCatBondEngine(catRisk, discountCurve, varLevel));
     }
 
 }
